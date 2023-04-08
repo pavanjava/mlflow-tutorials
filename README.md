@@ -9,3 +9,10 @@ this repository will focus on the mlflow framework and its capabilities
 - to run the project navigate to src folder and run `python experiment.py`
 - after that you should see **mlruns** folder getting created locally
 - open terminal and navigate to src folder and run `mlflow ui`
+
+# To make postgresql as backend store for mlflow registry
+
+- run the following command `mlflow server --backend-store-uri postgresql://localhost:5432/mlflow --default-artifact-root ./mlruns --host 0.0.0.0 --port 5000`
+- inorder to connect mlflow to postgres sql and internal dependency `psycopg2` is needed so install it using
+    
+    -- `pip install psycopg2`
