@@ -1,7 +1,14 @@
 import mlflow
 import pandas as pd
 from mlflow.genai.scorers import Correctness, Safety
-from my_app import agent  # Your GenAI app with tracing
+from agno.agent import Agent
+from agno.models.openai import OpenAILike
+
+def execute_agent(query: str):
+    agent = Agent(
+        model=OpenAILike(id="", base_url="")
+    )
+    agent.run(input=query)
 
 # Create evaluation data as a Pandas DataFrame
 eval_df = pd.DataFrame(
@@ -24,6 +31,6 @@ eval_df = pd.DataFrame(
 # Run evaluation
 results = mlflow.genai.evaluate(
     data=eval_df,
-    predict_fn=agent,
+    predict_fn=execute_agent,
     scorers=[Correctness(), Safety()],
 )
